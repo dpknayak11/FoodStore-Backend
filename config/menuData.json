@@ -1,0 +1,53 @@
+[
+  { "name": "Margherita Pizza", "description": "Classic cheese and tomato pizza", "price": 199, "image": "https://images.pexels.com/photos/825661/pexels-photo-825661.jpeg", "category": "PIZZA" },
+  { "name": "Farmhouse Pizza", "description": "Loaded with fresh vegetables", "price": 259, "image": "https://images.pexels.com/photos/2619967/pexels-photo-2619967.jpeg", "category": "PIZZA" },
+  { "name": "Pepperoni Pizza", "description": "Cheese pizza topped with pepperoni slices", "price": 299, "image": "https://images.pexels.com/photos/4109124/pexels-photo-4109124.jpeg", "category": "PIZZA" },
+  { "name": "BBQ Chicken Pizza", "description": "Grilled chicken with smoky BBQ sauce", "price": 329, "image": "https://images.pexels.com/photos/708587/pexels-photo-708587.jpeg", "category": "PIZZA" },
+  { "name": "Paneer Tikka Pizza", "description": "Indian paneer tikka topping with cheese", "price": 279, "image": "https://images.pexels.com/photos/1437267/pexels-photo-1437267.jpeg", "category": "PIZZA" },
+
+  { "name": "Veg Burger", "description": "Crispy veg patty with lettuce and sauce", "price": 99, "image": "https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg", "category": "BURGER" },
+  { "name": "Cheese Burger", "description": "Grilled patty with melted cheese slice", "price": 129, "image": "https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg", "category": "BURGER" },
+  { "name": "Chicken Burger", "description": "Grilled chicken fillet burger", "price": 149, "image": "https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg", "category": "BURGER" },
+  { "name": "Double Patty Burger", "description": "Double patties with cheese and sauce", "price": 179, "image": "https://images.pexels.com/photos/750073/pexels-photo-750073.jpeg", "category": "BURGER" },
+  { "name": "Spicy Mexican Burger", "description": "Spicy jalapeno and chipotle sauce", "price": 159, "image": "https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg", "category": "BURGER" },
+
+  { "name": "White Sauce Pasta", "description": "Creamy Alfredo white sauce pasta", "price": 189, "image": "https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg", "category": "PASTA" },
+  { "name": "Red Sauce Pasta", "description": "Classic tomato basil pasta", "price": 179, "image": "https://images.pexels.com/photos/1438672/pexels-photo-1438672.jpeg", "category": "PASTA" },
+  { "name": "Cheese Pasta", "description": "Pasta loaded with cheese", "price": 199, "image": "https://images.pexels.com/photos/1437267/pexels-photo-1437267.jpeg", "category": "PASTA" },
+  { "name": "Chicken Alfredo Pasta", "description": "Alfredo sauce pasta with grilled chicken", "price": 229, "image": "https://images.pexels.com/photos/704569/pexels-photo-704569.jpeg", "category": "PASTA" },
+
+  { "name": "Veg Sandwich", "description": "Fresh vegetable sandwich with chutney", "price": 79, "image": "https://images.pexels.com/photos/1600711/pexels-photo-1600711.jpeg", "category": "SANDWICH" },
+  { "name": "Grilled Cheese Sandwich", "description": "Toasted sandwich with melted cheese", "price": 89, "image": "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", "category": "SANDWICH" },
+  { "name": "Chicken Sandwich", "description": "Grilled chicken stuffing sandwich", "price": 109, "image": "https://images.pexels.com/photos/2092507/pexels-photo-2092507.jpeg", "category": "SANDWICH" },
+  { "name": "Club Sandwich", "description": "Triple layer sandwich with fillings", "price": 129, "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg", "category": "SANDWICH" },
+
+  { "name": "French Fries", "description": "Crispy golden salted fries", "price": 69, "image": "https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg", "category": "FRIES" },
+  { "name": "Cheese Fries", "description": "Fries topped with creamy cheese sauce", "price": 89, "image": "https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg", "category": "FRIES" },
+  { "name": "Peri Peri Fries", "description": "Fries tossed in peri peri seasoning", "price": 79, "image": "https://images.pexels.com/photos/1893555/pexels-photo-1893555.jpeg", "category": "FRIES" },
+
+  { "name": "Cold Coffee", "description": "Chilled creamy coffee drink", "price": 99, "image": "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg", "category": "DRINKS" },
+  { "name": "Chocolate Milkshake", "description": "Rich chocolate blended shake", "price": 119, "image": "https://images.pexels.com/photos/103566/pexels-photo-103566.jpeg", "category": "DRINKS" },
+  { "name": "Strawberry Milkshake", "description": "Fresh strawberry creamy shake", "price": 119, "image": "https://images.pexels.com/photos/616833/pexels-photo-616833.jpeg", "category": "DRINKS" },
+  { "name": "Lemon Iced Tea", "description": "Refreshing lemon iced tea", "price": 79, "image": "https://images.pexels.com/photos/96974/pexels-photo-96974.jpeg", "category": "DRINKS" },
+  { "name": "Mango Smoothie", "description": "Fresh mango blended smoothie", "price": 109, "image": "https://images.pexels.com/photos/616833/pexels-photo-616833.jpeg", "category": "DRINKS" },
+
+  { "name": "Chocolate Brownie", "description": "Warm gooey chocolate brownie", "price": 99, "image": "https://images.pexels.com/photos/291528/pexels-photo-291528.jpeg", "category": "DESSERTS" },
+  { "name": "Vanilla Ice Cream", "description": "Classic vanilla scoop ice cream", "price": 79, "image": "https://images.pexels.com/photos/1352245/pexels-photo-1352245.jpeg", "category": "DESSERTS" },
+  { "name": "Chocolate Lava Cake", "description": "Molten chocolate lava cake", "price": 109, "image": "https://images.pexels.com/photos/3026808/pexels-photo-3026808.jpeg", "category": "DESSERTS" },
+  { "name": "Blueberry Cheesecake", "description": "Creamy cheesecake with blueberry topping", "price": 149, "image": "https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg", "category": "DESSERTS" },
+
+  { "name": "Veg Hakka Noodles", "description": "Stir fried noodles with vegetables", "price": 139, "image": "https://images.pexels.com/photos/357756/pexels-photo-357756.jpeg", "category": "CHINESE" },
+  { "name": "Chicken Fried Rice", "description": "Fried rice tossed with chicken pieces", "price": 159, "image": "https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg", "category": "CHINESE" },
+  { "name": "Veg Manchurian", "description": "Fried veggie balls in spicy sauce", "price": 149, "image": "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", "category": "CHINESE" },
+  { "name": "Chilli Paneer", "description": "Paneer cubes in spicy chilli sauce", "price": 169, "image": "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", "category": "CHINESE" },
+
+  { "name": "Butter Chicken", "description": "Creamy tomato gravy with chicken", "price": 249, "image": "https://images.pexels.com/photos/9609838/pexels-photo-9609838.jpeg", "category": "INDIAN" },
+  { "name": "Paneer Butter Masala", "description": "Paneer cubes in rich buttery gravy", "price": 219, "image": "https://images.pexels.com/photos/5410400/pexels-photo-5410400.jpeg", "category": "INDIAN" },
+  { "name": "Veg Biryani", "description": "Fragrant rice with mixed vegetables", "price": 199, "image": "https://images.pexels.com/photos/958545/pexels-photo-958545.jpeg", "category": "INDIAN" },
+  { "name": "Chicken Biryani", "description": "Spiced basmati rice with chicken", "price": 229, "image": "https://images.pexels.com/photos/9609838/pexels-photo-9609838.jpeg", "category": "INDIAN" },
+  { "name": "Dal Makhani", "description": "Slow cooked black lentils with butter", "price": 189, "image": "https://images.pexels.com/photos/5410400/pexels-photo-5410400.jpeg", "category": "INDIAN" },
+
+  { "name": "Veg Wrap", "description": "Grilled vegetables wrapped in tortilla", "price": 119, "image": "https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg", "category": "WRAPS" },
+  { "name": "Chicken Wrap", "description": "Grilled chicken wrap with sauces", "price": 139, "image": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg", "category": "WRAPS" },
+  { "name": "Paneer Tikka Wrap", "description": "Spicy paneer tikka stuffed wrap", "price": 129, "image": "https://images.pexels.com/photos/1600711/pexels-photo-1600711.jpeg", "category": "WRAPS" }
+]
