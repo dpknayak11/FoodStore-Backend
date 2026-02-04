@@ -1,13 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const orderController = require('../controllers/order.controller');
-const { authenticate, authorize } = require('../middleware/auth.middleware');
+const orderController = require("../controllers/order.controller");
+const { isAuth } = require("../middleware/auth.middleware");
 
 // Create order
-router.post('/create', authenticate, orderController.createOrder);
+router.post("/create", isAuth, orderController.createOrder);
 // List user orders
-router.post('/list', authenticate, orderController.getOrdersForUser);
+router.post("/list", isAuth, orderController.getOrdersForUser);
 // Get single order (must own)
-router.get('/:id', authenticate, orderController.getOrderById);
+router.get("/:id", isAuth, orderController.getOrderById);
 
-module.exports = router; 
+module.exports = router;

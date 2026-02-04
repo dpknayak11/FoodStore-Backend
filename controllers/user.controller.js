@@ -39,7 +39,6 @@ const register = async (req, res) => {
 
     // Save new user
     const newUser = await serviceUser.saveUser(saveUserData);
-console.log("newUser",newUser);
 
     if (newUser.status === true) {
       const userToken = await generateToken(newUser.data);
