@@ -55,7 +55,7 @@ const getAllMenu = async (req, res) => {
     //   }).filter(([_, v]) => v !== undefined && v !== null && v !== ""),
     // );
     
-    console.log("filters",filters);
+    // console.log("filters",filters);
     
     const menu = await serviceMenu.getAllMenu(filters);
     if (!menu.status || !menu.data.length) {

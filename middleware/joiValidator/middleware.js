@@ -34,7 +34,8 @@ const joiValidator = (schema, property = "body") => {
       }, {});
 
       // Standard API error response bhej rahe hain
-      return apiErrorRes(req, res, BAD_REQUEST, errorMap);
+      const messageString = Object.values(errorMap).join(", ");
+      return apiErrorRes(req, res, BAD_REQUEST, messageString);
     }
   };
 };

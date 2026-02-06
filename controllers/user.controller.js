@@ -70,13 +70,14 @@ const login = async (req, res) => {
       req.body.password,
       userData.data.password,
     );
+console.log("isPasswordValid",isPasswordValid);
 
     if (!isPasswordValid) {
       return apiErrorRes(
         req,
         res,
         NOT_FOUND,
-        CONSTANTS_MSG.INVALID_CREDENTIALS,
+        CONSTANTS_MSG.INVALID_CREDENTIALS
       );
     }
 
