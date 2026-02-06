@@ -57,7 +57,7 @@ const getAllMenu = async (req, res) => {
     
     // console.log("filters",filters);
     
-    const menu = await serviceMenu.getAllMenu(filters);
+    const menu = await serviceMenu.getAllMenu();
     if (!menu.status || !menu.data.length) {
       return apiErrorRes(req, res, NOT_FOUND, CONSTANTS_MSG.MENU_NOT_FOUND);
     }

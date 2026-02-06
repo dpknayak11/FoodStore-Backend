@@ -23,9 +23,9 @@ const getMenuById = async (query) => {
   }
 };
 
-const getAllMenu = async (query) => {
+const getAllMenu = async () => {
   try {
-    const resData = await Menu.find(query).lean();
+    const resData = await Menu.find().lean();
     return resData.length > 0
       ? resultDb(true, resData)
       : resultDb(false, DATA_NULL);
