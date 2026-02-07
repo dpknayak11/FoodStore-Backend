@@ -5,6 +5,7 @@ const { apiErrorRes, apiSuccessRes } = require("../utils/globalFunction");
 
 const getAllMenu = async (req, res) => {
   try {
+    
     // const {
     //   search,
     //   category,
