@@ -4,7 +4,7 @@ const { addTimeStamp } = require("../utils/addTimeStamp");
 
 const AddressSchema = new Schema(
   {
-    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     fullAddress: { type: String, required: true, trim: true },
     isDefault: { type: Boolean, default: false },
     phone: { type: String, required: true },

@@ -54,6 +54,9 @@ module.exports = Object.freeze({
   ADDRESS_UPDATED: "Address updated",
   ADDRESS_DELETED: "Address deleted",
   ADDRESS_NOT_FOUND: "Address not found",
+  ADDRESS_FETCHED: "Address fetched successfully",
+  ADDRESS_ID_REQUIRED: "Address id is required",
+
 
   // Notifications
   NOTIFICATION_CREATED: "Notification created",

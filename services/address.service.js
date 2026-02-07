@@ -12,17 +12,6 @@ const getAddressById = async (query) => {
   }
 };
 
-// Get Address by ID
-const getAddressByOne = async (query) => {
-  try {
-    const resData = await Address.findOne(query);
-    return resData ? resultDb(true, resData) : resultDb(false, DATA_NULL);
-  } catch (error) {
-    console.error("Error in getAddressById:", error);
-    return resultDb(false, DATA_NULL);
-  }
-};
-
 // Save Address
 const saveAddress = async (data) => {
   try {
@@ -38,8 +27,9 @@ const saveAddress = async (data) => {
 // Get All Addresss by User ID
 const getAllAddressByUserId = async (query) => {
   try {
+    // const resData = await Address.find(query).lean();
     const resData = await Address.find(query)
-      .sort({ isDefault: -1, createdAt: -1 })
+      .sort({ isDefault: -1, createdAt: -1 }) // default first, newest after
       .lean();
     return resData.length > 0
       ? resultDb(true, resData)
@@ -63,10 +53,33 @@ const deleteAddress = async (query) => {
   }
 };
 
+const updateManyAddress = async (query, data) => {
+  try {
+    const resData = await Address.updateMany(query, data);
+    return resData.modifiedCount >= 0
+      ? resultDb(true, resData)
+      : resultDb(false, DATA_NULL);
+  } catch (error) {
+    console.error("Error in updateManyAddress:", error);
+    return resultDb(false, DATA_NULL);
+  }
+};
+
+const updateAddressById = async (query, data) => {
+  try {
+    const resData = await Address.findOneAndUpdate(query, data, { new: true });
+    return resData ? resultDb(true, resData) : resultDb(false, DATA_NULL);
+  } catch (error) {
+    console.error("Error in updateAddressById:", error);
+    return resultDb(false, DATA_NULL);
+  }
+};
+
 module.exports = {
-  getAddressByOne,
   saveAddress,
+  getAddressById,
   getAllAddressByUserId,
   deleteAddress,
-  getAddressById,
+  updateManyAddress,
+  updateAddressById,
 };

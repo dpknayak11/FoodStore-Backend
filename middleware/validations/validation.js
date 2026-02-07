@@ -32,36 +32,56 @@ exports.updateUserSchema = Joi.object({
 
 // ================= MENU ITEMS =================
 exports.menuCreateSchema = Joi.object({
-    name: name.required(),
-    description: optionalString,
-    price: Joi.number().min(0).required(),
-    image: optionalString,
+  name: name.required(),
+  description: optionalString,
+  price: Joi.number().min(0).required(),
+  image: optionalString,
 });
 
 exports.menuGetSchema = Joi.object({
-    menuItemId: objectId.required(),
+  menuItemId: objectId.required(),
 });
 
 exports.menuGetAllSchema = Joi.object({
-    search: optionalString,
-    category: optionalString,
-    minPrice: Joi.number().min(0),
-    maxPrice: Joi.number().min(0),
-    sortBy: Joi.string().valid("name", "price", "createdAt"),
-    sortOrder: Joi.string().valid("asc", "desc"),
+  search: optionalString,
+  category: optionalString,
+  minPrice: Joi.number().min(0),
+  maxPrice: Joi.number().min(0),
+  sortBy: Joi.string().valid("name", "price", "createdAt"),
+  sortOrder: Joi.string().valid("asc", "desc"),
 });
 
 // ================= CART =================
 exports.addToCartSchema = Joi.object({
-    menuItemId: objectId.required(),
-    quantity: Joi.number().min(1).required(),
+  menuItemId: objectId.required(),
+  quantity: Joi.number().min(1).required(),
 });
 exports.updateCartSchema = Joi.object({
-    menuItemId: objectId.required(),
-    quantity: Joi.number().min(1).required(),
+  menuItemId: objectId.required(),
+  quantity: Joi.number().min(1).required(),
 });
 exports.removeFromCartSchema = Joi.object({
-    menuItemId: objectId.required(),
+  menuItemId: objectId.required(),
 });
 
+// ================= ADDRESS =================
+exports.addressCreateSchema = Joi.object({
+  fullAddress: optionalString.required(),
+  phone: optionalString.required(),
+  isDefault: Joi.boolean().default(false),
+});
 
+exports.addressGetSchema = Joi.object({
+  id: objectId.required(),
+});
+
+exports.addressUpdateSchema = Joi.object({
+  id: objectId.required(),
+  fullAddress: optionalString,
+  phone: optionalString,
+  isDefault: Joi.boolean(),
+});
+
+exports.addressDeleteSchema = Joi.object({
+  id: objectId.required(),
+});

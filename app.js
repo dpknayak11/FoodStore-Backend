@@ -12,6 +12,7 @@ app.use(cors());
 // Routes
 const userRoutes = require("./routes/user.routes");
 const menuRoutes = require("./routes/menu.routes");
+const addressRoutes = require("./routes/address.routes");
 const { default: mongoose } = require("./config/db");
 // const orderRoutes = require('./routes/order.routes');
 
@@ -44,6 +45,7 @@ app.get("/", (req, res) => res.send("Your backend connected! dpknayak11"));
 const API_V1 = process.env.API_END_POINT_V1 || "/api/v1";
 app.use(`${API_V1}/auth`, userRoutes);
 app.use(`${API_V1}/menu`, menuRoutes);
+app.use(`${API_V1}/address`, addressRoutes);
 
 server.listen(PORT, () => {
   console.log(`Server is up and running on port ${PORT}! 🚀`);

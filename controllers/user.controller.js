@@ -70,7 +70,7 @@ const login = async (req, res) => {
       req.body.password,
       userData.data.password,
     );
-console.log("isPasswordValid",isPasswordValid);
+// console.log("isPasswordValid",isPasswordValid);
 
     if (!isPasswordValid) {
       return apiErrorRes(
