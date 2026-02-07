@@ -5,44 +5,44 @@ const { apiErrorRes, apiSuccessRes } = require("../utils/globalFunction");
 
 const getAllMenu = async (req, res) => {
   try {
-    const {
-      search,
-      category,
-      minPrice,
-      maxPrice,
-      sortBy = "",
-      sortOrder = "",
-    } = req.body;
+    // const {
+    //   search,
+    //   category,
+    //   minPrice,
+    //   maxPrice,
+    //   sortBy = "",
+    //   sortOrder = "",
+    // } = req.body;
 
-    const filters = {};
+    // const filters = {};
 
     // 🔍 Search text
-    if (search && search.trim() !== "") {
-      filters.search = search.trim();
-    }
+    // if (search && search.trim() !== "") {
+    //   filters.search = search.trim();
+    // }
 
-    // 📂 Category
-    if (category && category.trim() !== "") {
-      filters.category = category.trim();
-    }
+    // // 📂 Category
+    // if (category && category.trim() !== "") {
+    //   filters.category = category.trim();
+    // }
 
-    // 💰 Price range
-    if (minPrice !== undefined && minPrice !== "") {
-      filters.minPrice = Number(minPrice);
-    }
+    // // 💰 Price range
+    // if (minPrice !== undefined && minPrice !== "") {
+    //   filters.minPrice = Number(minPrice);
+    // }
 
-    if (maxPrice !== undefined && maxPrice !== "") {
-      filters.maxPrice = Number(maxPrice);
-    }
+    // if (maxPrice !== undefined && maxPrice !== "") {
+    //   filters.maxPrice = Number(maxPrice);
+    // }
 
-    // 🔃 Sorting (only if provided)
-    if (sortBy && sortBy.trim() !== "") {
-      filters.sortBy = sortBy;
-    }
+    // // 🔃 Sorting (only if provided)
+    // if (sortBy && sortBy.trim() !== "") {
+    //   filters.sortBy = sortBy;
+    // }
 
-    if (sortOrder && sortOrder.trim() !== "") {
-      filters.sortOrder = sortOrder;
-    }
+    // if (sortOrder && sortOrder.trim() !== "") {
+    //   filters.sortOrder = sortOrder;
+    // }
 
     // const filters = Object.fromEntries(
     //   Object.entries({
