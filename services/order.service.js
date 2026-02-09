@@ -2,16 +2,6 @@ const Order = require("../models/order.model");
 const { resultDb } = require("../utils/globalFunction");
 const { DATA_NULL } = require("../utils/constants");
 
-const getOrderById = async (query) => {
-  try {
-    const user = await Order.findById(query).lean();
-    return user ? resultDb(true, user) : resultDb(false, DATA_NULL);
-  } catch (err) {
-    console.error("Order.getOrderById error:", err);
-    return resultDb(false, DATA_NULL);
-  }
-};
-
 // Get Order by ID
 const getOrderByOne = async (query) => {
   try {
@@ -36,11 +26,9 @@ const saveOrder = async (data) => {
 };
 
 // Get All Orders by User ID
-const getAllOrderByUserId = async (query) => {
+const getAllOrder = async (query) => {
   try {
-    const resData = await Order.find(query)
-      .sort({ createdAt: -1 })
-      .lean();
+    const resData = await Order.find(query).sort({ createdAt: -1 }).lean();
     return resData.length > 0
       ? resultDb(true, resData)
       : resultDb(false, DATA_NULL);
@@ -50,15 +38,28 @@ const getAllOrderByUserId = async (query) => {
   }
 };
 
-// Delete Order
-const deleteOrder = async (query) => {
+const updateOrderStatus = async ({ userId, orderId, status }) => {
   try {
-    const resData = await Order.deleteOne(query);
-    return resData.deletedCount === 0
-      ? resultDb(false, DATA_NULL)
-      : resultDb(true);
+    // const allowedStatuses = [
+    //   "received",
+    //   "preparing",
+    //   "out_for_delivery",
+    //   "delivered",
+    //   "cancelled",
+    // ];
+
+    // // ❌ Invalid status check
+    // if (!allowedStatuses.includes(status)) {
+    //   return resultDb(false, "Invalid status value");
+    // }
+    const resData = await Order.findOneAndUpdate(
+      { userId: userId, _id: orderId },
+      { status },
+      { new: true },
+    );
+    return resData ? resultDb(true, resData) : resultDb(false, DATA_NULL);
   } catch (error) {
-    console.error("Error in deleteOrder:", error);
+    console.error("Error in updateOrderStatus:", error);
     return resultDb(false, DATA_NULL);
   }
 };
@@ -66,7 +67,6 @@ const deleteOrder = async (query) => {
 module.exports = {
   getOrderByOne,
   saveOrder,
-  getAllOrderByUserId,
-  deleteOrder,
-  getOrderById,
+  getAllOrder,
+  updateOrderStatus,
 };
