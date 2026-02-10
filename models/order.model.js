@@ -25,8 +25,7 @@ const DeliveryInfoSchema = new Schema(
 
 const OrderSchema = new Schema(
   {
-    orderId: { type: String, index: true },
-    user: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     items: { type: [OrderItemSchema], required: true, default: [] },
     deliveryInfo: { type: DeliveryInfoSchema, required: true },
     subtotal: { type: Number, required: true, min: 0 },

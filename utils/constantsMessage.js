@@ -13,7 +13,6 @@ module.exports = Object.freeze({
   RESOURCE_CONFLICT: "Resource conflict",
   INVALID_QUERY_OBJECT: "Invalid query object",
 
-
   // Auth / User
   USER_REGISTERED: "User registered successfully",
   USER_LOGIN: "Login successful",
@@ -35,8 +34,6 @@ module.exports = Object.freeze({
   // Menu
   MENU_NOT_FOUND: "Menu item not found",
   MENU_FETCHED: "Menu fetched successfully",
-  
-
 
   // Cart
   CART_UPDATED: "Cart updated",
@@ -48,6 +45,10 @@ module.exports = Object.freeze({
   ORDER_NOT_FOUND: "Order not found",
   ORDER_STATUS_UPDATED: "Order status updated",
   ORDER_ALREADY_CANCELLED: "Order already cancelled",
+  ORDER_FETCHED: "Order fetched successfully",
+  ORDER_CANCELLED: "Order cancelled successfully",
+  ORDER_CANCELLATION_FAILED: "Order cancellation failed",
+  ORDER_PLACED: "Order placed successfully",
 
   // Addresses
   ADDRESS_ADDED: "Address added",
@@ -56,7 +57,6 @@ module.exports = Object.freeze({
   ADDRESS_NOT_FOUND: "Address not found",
   ADDRESS_FETCHED: "Address fetched successfully",
   ADDRESS_ID_REQUIRED: "Address id is required",
-
 
   // Notifications
   NOTIFICATION_CREATED: "Notification created",

@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const orderController = require("../controllers/order.controller");
 const { isAuth } = require("../middleware/auth.middleware");
+const schema = require("../middleware/validations/validation");
+const joiValidator = require("../middleware/joiValidator/middleware");
 
 // Create order
 router.post(
@@ -11,13 +13,13 @@ router.post(
   orderController.createOrder,
 );
 // List user All orders
-router.post("/", isAuth, orderController.getOrdersForUser);
-// Get single order (must own)
+router.get("/", isAuth, orderController.getAllOrder);
+
 router.post(
-  "/cancle/:id",
+  "/updatestatus",
   isAuth,
-  joiValidator(schema.orderCancleSchema, "params"),
-  orderController.cancleOrder,
+  joiValidator(schema.orderStatusUpdateSchema, "body"),
+  orderController.updateOrderStatus,
 );
 
 module.exports = router;

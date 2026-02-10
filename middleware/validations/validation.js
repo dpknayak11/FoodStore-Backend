@@ -85,3 +85,54 @@ exports.addressUpdateSchema = Joi.object({
 exports.addressDeleteSchema = Joi.object({
   id: objectId.required(),
 });
+
+// ================= ORDER =================
+
+const price = Joi.number().min(0);
+const quantity = Joi.number().min(1);
+
+const orderStatus = Joi.string().valid(
+  "received",
+  "preparing",
+  "out_for_delivery",
+  "delivered",
+  "cancelled",
+);
+
+// Order Item
+const orderItemSchema = Joi.object({
+  menuItem: objectId.required(),
+  name: name.required(),
+  price: price.required(),
+  quantity: quantity.required(),
+  notes: optionalString,
+});
+
+// Delivery Info
+const deliveryInfoSchema = Joi.object({
+  name: name.required(),
+  phone: mobNo.required(),
+  address: Joi.string().min(5).required(),
+  notes: optionalString,
+});
+
+// Create Order
+exports.orderCreateSchema = Joi.object({
+  items: Joi.array().items(orderItemSchema).min(1).required(),
+  deliveryInfo: deliveryInfoSchema.required(),
+  subtotal: price.required(),
+  deliveryFee: price.default(0),
+  total: price.required(),
+  meta: Joi.object().optional(),
+});
+
+// Get Single Order
+exports.orderGetSchema = Joi.object({
+  id: Joi.string().required(),
+});
+
+// uodate Order status
+exports.orderStatusUpdateSchema = Joi.object({
+  id: Joi.string().required(),
+  status: orderStatus.required(),
+});

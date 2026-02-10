@@ -14,7 +14,7 @@ const userRoutes = require("./routes/user.routes");
 const menuRoutes = require("./routes/menu.routes");
 const addressRoutes = require("./routes/address.routes");
 const { default: mongoose } = require("./config/db");
-// const orderRoutes = require('./routes/order.routes');
+const orderRoutes = require('./routes/order.routes');
 
 const corsConfig = {
   origin: "*",
@@ -46,6 +46,7 @@ const API_V1 = process.env.API_END_POINT_V1 || "/api/v1";
 app.use(`${API_V1}/auth`, userRoutes);
 app.use(`${API_V1}/menu`, menuRoutes);
 app.use(`${API_V1}/address`, addressRoutes);
+app.use(`${API_V1}/order`, orderRoutes);
 
 server.listen(PORT, () => {
   console.log(`Server is up and running on port ${PORT}! 🚀`);

@@ -1,39 +1,190 @@
-const orderService = require('../services/order.service');
-const { apiSuccessRes, apiErrorRes } = require('../utils/globalFunction');
-const MESSAGES = require('../utils/constantsMessage');
-const { SUCCESS, CREATED, NOT_FOUND, SERVER_ERROR } = require('../utils/constants');
+const orderService = require("../services/order.service");
+const serviceMenu = require("../services/menu.service");
+const serviceAddress = require("../services/address.service");
+
+const { apiSuccessRes, apiErrorRes } = require("../utils/globalFunction");
+const CONSTANTS_MSG = require("../utils/constantsMessage");
+
+const {
+  SUCCESS,
+  CREATED,
+  NOT_FOUND,
+  SERVER_ERROR,
+} = require("../utils/constants");
 
 const createOrder = async (req, res) => {
-  const payload = req.body;
-  const result = await orderService.createOrder(req.user._id, payload);
-  if (result.statusCode === CREATED) return apiSuccessRes(req, res, CREATED, MESSAGES.ORDER_CREATED, result.data);
-  return apiErrorRes(req, res, SERVER_ERROR, MESSAGES.FAILURE, null);
-};
-
-const getOrdersForUser = async (req, res) => {
-  const { page = 1, limit = 20 } = req.query;
-  const result = await orderService.getOrdersForUser(req.user._id, { page: Number(page), limit: Number(limit) });
-  if (result.statusCode === SUCCESS) return apiSuccessRes(req, res, SUCCESS, MESSAGES.SUCCESS, result.data);
-  return apiErrorRes(req, res, SERVER_ERROR, MESSAGES.FAILURE, null);
-};
-
-const getOrderById = async (req, res) => {
-  const result = await orderService.getOrderById(req.params.id);
-  if (result.statusCode === SUCCESS) {
-    const order = result.data;
-    if (String(order.user) !== String(req.user._id) && req.user.role !== 'admin') {
-      return apiErrorRes(req, res, 403, MESSAGES.FORBIDDEN, null);
+  try {
+    const userId = req.user._id;
+    const { items, deliveryInfo, subtotal, deliveryFee, total, meta } = req.body;
+    if (!items?.length || !deliveryInfo) {
+      return apiErrorRes(req, res, BAD_REQUEST, "Items and delivery info required");
     }
-    return apiSuccessRes(req, res, SUCCESS, MESSAGES.SUCCESS, order);
+    const orderPayload = {
+      userId,
+      items,
+      deliveryInfo,
+      subtotal,
+      deliveryFee,
+      total,
+      status: "received",
+      meta: meta || {},
+    };
+    const order = await orderService.saveOrder(orderPayload);
+    if (!order.status) {
+      return apiErrorRes(req, res, SERVER_ERROR, CONSTANTS_MSG.ORDER_CREATED);
+    }
+    return apiSuccessRes(
+      req,
+      res,
+      CREATED,
+      CONSTANTS_MSG.ORDER_PLACED,
+      order.data
+    );
+  } catch (error) {
+    console.error("Error creating order:", error);
+    return apiErrorRes(req, res, SERVER_ERROR, CONSTANTS_MSG.SERVER_ERROR);
   }
-  return apiErrorRes(req, res, result.statusCode || SERVER_ERROR, MESSAGES.ORDER_NOT_FOUND, null);
+};
+
+// const createOrder = async (req, res) => {
+//   try {
+//     const userId = req.user._id;
+//     const { items, deliveryInfo, subtotal, deliveryFee, total, meta } = req.body;
+
+//     if (!items?.length || !deliveryInfo) {
+//       return apiErrorRes(req, res, BAD_REQUEST, "Items and delivery info required");
+//     }
+
+//     let calculatedSubtotal = 0;
+//     const verifiedItems = [];
+
+//     // 🔍 Re-verify menu prices from DB
+//     for (const item of items) {
+//       const menuRes = await serviceMenu.getMenuById({ _id: item.menuItem });
+//       if (!menuRes.status) {
+//         return apiErrorRes(req, res, NOT_FOUND, CONSTANTS_MSG.MENU_NOT_FOUND);
+//       }
+
+//       const dbItem = menuRes.data;
+//       const itemTotal = dbItem.price * item.quantity;
+//       calculatedSubtotal += itemTotal;
+
+//       verifiedItems.push({
+//         menuItem: dbItem._id,
+//         name: dbItem.name,
+//         price: dbItem.price,
+//         quantity: item.quantity,
+//         notes: item.notes || "",
+//       });
+//     }
+
+//     // 🚚 Delivery fee logic (recalculate)
+//     const calculatedDeliveryFee = calculatedSubtotal > 500 ? 0 : 40;
+//     const calculatedTotal = calculatedSubtotal + calculatedDeliveryFee;
+
+//     // ❌ If frontend totals mismatch → reject
+//     if (
+//       calculatedSubtotal !== subtotal ||
+//       calculatedDeliveryFee !== deliveryFee ||
+//       calculatedTotal !== total
+//     ) {
+//       return apiErrorRes(req, res, BAD_REQUEST, "Price mismatch detected");
+//     }
+
+//     // 📦 Prepare order payload
+//     const orderPayload = {
+//       orderId: `ORD-${Date.now()}`,
+//       userId,
+//       items: verifiedItems,
+//       deliveryInfo,
+//       subtotal: calculatedSubtotal,
+//       deliveryFee: calculatedDeliveryFee,
+//       total: calculatedTotal,
+//       status: "received",
+//       meta: meta || {},
+//     };
+
+//     const order = await orderService.saveOrder(orderPayload);
+
+//     if (!order.status) {
+//       return apiErrorRes(req, res, SERVER_ERROR, CONSTANTS_MSG.ORDER_NOT_CREATED);
+//     }
+
+//     return apiSuccessRes(
+//       req,
+//       res,
+//       CREATED,
+//       CONSTANTS_MSG.ORDER_CREATED,
+//       order.data
+//     );
+
+//   } catch (error) {
+//     console.error("Error creating order:", error);
+//     return apiErrorRes(req, res, SERVER_ERROR, CONSTANTS_MSG.SERVER_ERROR);
+//   }
+// };
+
+
+const getAllOrder = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const order = await orderService.getAllOrder({ userId: userId });
+    if (!order.status || !order.data.length) {
+      return apiErrorRes(req, res, NOT_FOUND, CONSTANTS_MSG.ORDER_NOT_FOUND);
+    }
+    return apiSuccessRes(
+      req,
+      res,
+      SUCCESS,
+      CONSTANTS_MSG.ORDER_FETCHED,
+      order.data,
+    );
+  } catch (error) {
+    console.error("Error fetching order:", error);
+    return apiErrorRes(req, res, SERVER_ERROR, CONSTANTS_MSG.SERVER_ERROR);
+  }
 };
 
 const updateOrderStatus = async (req, res) => {
-  const { status } = req.body;
-  const result = await orderService.updateOrderStatus(req.params.id, status);
-  if (result.statusCode === SUCCESS) return apiSuccessRes(req, res, SUCCESS, MESSAGES.ORDER_STATUS_UPDATED, result.data);
-  return apiErrorRes(req, res, result.statusCode || SERVER_ERROR, MESSAGES.FAILURE, null);
+  try {
+    const { id, status } = req.body;
+    const result = await orderService.updateOrderStatus({
+      userId: req.user._id,
+      _id: id,
+      status,
+    });
+
+    if (!result.status) {
+      return apiErrorRes(
+        req,
+        res,
+        NOT_FOUND,
+        CONSTANTS_MSG.ORDER_NOT_FOUND
+      );
+    }
+
+    return apiSuccessRes(
+      req,
+      res,
+      SUCCESS,
+      CONSTANTS_MSG.ORDER_STATUS_UPDATED,
+      result.data
+    );
+
+  } catch (error) {
+    console.error("Error updating order status:", error);
+    return apiErrorRes(
+      req,
+      res,
+      SERVER_ERROR,
+      CONSTANTS_MSG.SERVER_ERROR
+    );
+  }
 };
 
-module.exports = { createOrder, getOrdersForUser, getOrderById, updateOrderStatus };
+
+module.exports = {
+  createOrder,
+  getAllOrder,
+  updateOrderStatus,
+};
