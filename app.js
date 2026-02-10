@@ -51,7 +51,7 @@ app.use(`${API_V1}/menu`, menuRoutes);
 app.use(`${API_V1}/address`, addressRoutes);
 app.use(`${API_V1}/order`, orderRoutes);
 
-app.use(`${API_V1}/${process.env.CRON_URL}/cron`, cronRoutes);
+app.use(`${process.env.BACKEND_URL}/${process.env.CRON_URL}/cron`, cronRoutes);
 
 // // ⏰ Runs every minute
 // cron.schedule("* * * * *", async () => {
