@@ -8,11 +8,5 @@
       "dest": "/app.js",
       "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     }
-  ],
-  "crons": [
-    {
-      "path": "/api/cron/auto-update-order-status",
-      "schedule": "* * * * *"
-    }
   ]
 }
