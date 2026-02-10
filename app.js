@@ -13,9 +13,10 @@ app.use(cors());
 const userRoutes = require("./routes/user.routes");
 const menuRoutes = require("./routes/menu.routes");
 const addressRoutes = require("./routes/address.routes");
-const { default: mongoose } = require("./config/db");
+// const { default: mongoose } = require("./config/db");
 const orderRoutes = require("./routes/order.routes");
 const orderModel = require("./models/order.model");
+const connectDB = require("./config/db");
 const corsConfig = {
   origin: "*",
   optionsSuccessStatus: 200,
@@ -36,7 +37,7 @@ const istTime = moment().tz("Asia/Kolkata");
 // Format the time in 24-hour format
 const formattedTime = istTime.format("DD/MM/YYYY HH:mm:ss");
 console.log(formattedTime);
-
+connectDB()
 // Basic root
 app.get("/", (req, res) => res.send("Your backend connected! dpknayak11"));
 
@@ -49,7 +50,6 @@ app.use(`${API_END_POINT_V1}/order`, orderRoutes);
 
 // ⏰ Runs every minute
 cron.schedule("* * * * *", async () => {
-  app.use("/cron", cronRoutes);
   try {
     const now = moment().tz("Asia/Kolkata");
     console.log("🕒 Cron running at:", now.format("DD/MM/YYYY hh:mm A"));
