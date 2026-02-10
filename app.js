@@ -3,8 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const moment = require("moment-timezone");
 const cron = require("node-cron");
-
-const CONSTANTS_MSG = require("./utils/constantsMessage");
 const { apiSuccessRes, apiErrorRes } = require("./utils/globalFunction");
 const app = express();
 const http = require("http");
@@ -51,7 +49,7 @@ app.use(`${API_V1}/menu`, menuRoutes);
 app.use(`${API_V1}/address`, addressRoutes);
 app.use(`${API_V1}/order`, orderRoutes);
 
-app.use(`${API_V1}/${process.env.CRON_URL}`, cronRoutes);
+app.use(`${API_V1}/cron`, cronRoutes);
 
 // // ⏰ Runs every minute
 cron.schedule("* * * * *", async () => {
