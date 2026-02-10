@@ -5,7 +5,7 @@ const router = express.Router();
 const Order = require("../models/order.model");
 
 // 🔄 Auto update order status
-router.post("/auto-update-order-status", async (req, res) => {
+router.get("/auto-update-order-status", async (req, res) => {
   try {
     const now = moment().tz("Asia/Kolkata");
     console.log("🕒 Cron running at:", now.format("DD/MM/YYYY hh:mm A"));
