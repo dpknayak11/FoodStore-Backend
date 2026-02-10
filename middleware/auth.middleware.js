@@ -53,6 +53,7 @@ const isAuth = async (req, res, next) => {
 
     // Find user in DB
     const user = await User.findById({ _id: verifiedToken.userId });
+    
     if (!user) {
       return apiErrorRes(
         req,

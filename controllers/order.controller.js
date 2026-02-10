@@ -10,6 +10,7 @@ const {
   CREATED,
   NOT_FOUND,
   SERVER_ERROR,
+  BAD_REQUEST,
 } = require("../utils/constants");
 
 const createOrder = async (req, res) => {
