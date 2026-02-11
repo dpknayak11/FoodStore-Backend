@@ -1,13 +1,12 @@
 // db.js - mongoose cluster setup
 const mongoose = require('mongoose');
 require('dotenv').config();
-
+const DB_STRING = process.env.DB_STRING || "mongodb+srv://dpknayak111:d7lG0pW2Z4SFdZD6@cluster1.dpc9kng.mongodb.net/Order_Management?retryWrites=true&w=majority&appName=Cluster1"
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    //   replicaSet: 'rs0', // cluster
+    await mongoose.connect(DB_STRING, {
+      // useNewUrlParser: true,
+      // useUnifiedTopology: true,
     });
     console.log('MongoDB connected 🚀');
   } catch (err) {
