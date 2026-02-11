@@ -13,10 +13,10 @@ app.use(cors());
 const userRoutes = require("./routes/user.routes");
 const menuRoutes = require("./routes/menu.routes");
 const addressRoutes = require("./routes/address.routes");
-// const { default: mongoose } = require("./config/db");
+const { default: mongoose } = require("./config/db");
 const orderRoutes = require("./routes/order.routes");
 const orderModel = require("./models/order.model");
-const connectDB = require("./config/db");
+// const connectDB = require("./config/db");
 const corsConfig = {
   origin: "*",
   optionsSuccessStatus: 200,
@@ -37,7 +37,7 @@ const istTime = moment().tz("Asia/Kolkata");
 // Format the time in 24-hour format
 const formattedTime = istTime.format("DD/MM/YYYY HH:mm:ss");
 console.log(formattedTime);
-connectDB()
+// connectDB()
 // Basic root
 app.get("/", (req, res) => res.send("Your backend connected! dpknayak11"));
 
