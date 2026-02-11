@@ -1,7 +1,12 @@
 // db.js - mongoose cluster setup
 const mongoose = require('mongoose');
 require('dotenv').config();
-const DB_STRING = process.env.DB_STRING || "mongodb+srv://dpknayak111:d7lG0pW2Z4SFdZD6@cluster1.dpc9kng.mongodb.net/Order_Management?retryWrites=true&w=majority&appName=Cluster1"
+const DB_STRING = process.env.DB_STRING;
+
+if (!DB_STRING) {
+  throw new Error("DB_STRING not found in environment variables");
+}
+
 const connectDB = async () => {
   try {
     await mongoose.connect(DB_STRING, {
