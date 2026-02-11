@@ -129,6 +129,8 @@ const createOrder = async (req, res) => {
 const getAllOrder = async (req, res) => {
   try {
     const userId = req.user._id;
+       // 🔥 Step 1: Update order statuses before fetching
+    await orderService.autoUpdateOrderStatus(userId);
     const order = await orderService.getAllOrder({ userId: userId });
     if (!order.status || !order.data.length) {
       return apiErrorRes(req, res, NOT_FOUND, CONSTANTS_MSG.ORDER_NOT_FOUND);
