@@ -22,4 +22,8 @@ router.post(
   orderController.updateOrderStatus,
 );
 
+router.post("/checkout", isAuth, orderController.checkout);
+
+router.post("/paymentverification", isAuth, orderController.paymentVerification);
+
 module.exports = router;

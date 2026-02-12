@@ -6,8 +6,8 @@ require("dotenv").config();
 const Payment = require("../models/paymentModel.js");
 const { createOrder } = require("../services/orderService.js");
 const { getUserById } = require("../services/userService.js");
+const { apiSuccessRes, apiErrorRes } = require("../utils/globalFunction");
 const CONSTANTS_MSG = require("../utils/constantsMessage");
-
 // ================== RAZORPAY INSTANCE ==================
 const razorpayInstance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
@@ -28,13 +28,10 @@ const checkout = async (req, res) => {
     };
     // Create Razorpay order
     const order = await razorpayInstance.orders.create(options);
-    res.status(200).json({
-      success: true,
-      order,
-    });
+    return apiSuccessRes(req, res, SUCCESS, CONSTANTS_MSG.ORDER_FETCHED, order);
   } catch (error) {
     console.error("Checkout Error:", error);
-    res.status(500).json({ error: error.message });
+    return apiErrorRes(req, res, SERVER_ERROR, CONSTANTS_MSG.SERVER_ERROR);
   }
 };
 
@@ -47,7 +44,7 @@ const paymentVerification = async (req, res) => {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
-      selectedOrder, // Cart + Address details from frontend
+      selectedOrder,
       userId,
     } = req.body;
 
@@ -101,6 +98,7 @@ const paymentVerification = async (req, res) => {
       address: selectedOrder.address,
       paymentMethod: "Razorpay",
       paymentId: paymentDone.razorpay_payment_id,
+      status: "payment_failed"
     };
 
     const order = await createOrder(orderData);
