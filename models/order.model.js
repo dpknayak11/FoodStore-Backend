@@ -6,7 +6,6 @@ const { addTimeStamp } = require("../utils/addTimeStamp");
 // ================= ORDER ITEM =================
 const OrderItemSchema = new Schema(
   {
-    menuItem: { type: Schema.Types.ObjectId, ref: "MenuItem" },
     name: { type: String, required: true },
     price: { type: Number, required: true, min: 0 },
     quantity: { type: Number, required: true, min: 1 },

@@ -51,18 +51,6 @@ exports.menuGetAllSchema = Joi.object({
   sortOrder: Joi.string().valid("asc", "desc"),
 });
 
-// ================= CART =================
-exports.addToCartSchema = Joi.object({
-  menuItemId: objectId.required(),
-  quantity: Joi.number().min(1).required(),
-});
-exports.updateCartSchema = Joi.object({
-  menuItemId: objectId.required(),
-  quantity: Joi.number().min(1).required(),
-});
-exports.removeFromCartSchema = Joi.object({
-  menuItemId: objectId.required(),
-});
 
 // ================= ADDRESS =================
 exports.addressCreateSchema = Joi.object({
@@ -101,7 +89,7 @@ const orderStatus = Joi.string().valid(
 
 // Order Item
 const orderItemSchema = Joi.object({
-  menuItem: objectId.required(),
+  // menuItem: objectId.required(),
   name: name.required(),
   price: price.required(),
   quantity: quantity.required(),
